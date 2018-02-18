@@ -100,3 +100,16 @@ class WinkClient:
 
     def update_device(self, device):
         return self.put(device.url(), json=device.configuration())
+
+if __name__ == '__main__':
+    print "Fetch the access token for a user:"
+    client_id = raw_input("Wink Client ID:").strip()
+    client_secret = raw_input("Wink Client Secret:").strip()
+
+    username = raw_input("Wink Username:").strip()
+    password = raw_input("Wink Password:").strip()
+
+    client = WinkClient(client_id, client_secret, None, None)
+    client.authenticate(username, password)
+    print "Access Token:", client.access_token
+    print "Refresh Token:", client.refresh_token

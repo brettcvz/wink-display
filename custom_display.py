@@ -1,5 +1,5 @@
 from wink import WinkClient
-from sources import uber, muni, weather, credit_card
+from sources import weather, credit_card
 from datetime import datetime
 
 #FILL THESE IN FOR YOUR NEEDS
@@ -63,9 +63,9 @@ def update_datetime_dial(dial):
     #secondary label: Clock time
 
     now = datetime.now()
-    dial.description = now.stftime("%H:%M")
+    dial.description = now.strftime("%H:%M")
     dial.value = (now.hour % 12) * 30 + now.minute / 2
-    dial.label = now.stftime("%a%-m-%-d")
+    dial.label = now.strftime("%a%-m-%-d")
 
 def update_weather_dial(dial):
     #display: low/high
@@ -86,7 +86,7 @@ def update_sun_and_moon_dial(dial):
     if next_sunchange_is_sunrise:
         dial.label = "Up: %s" % (next_sunchange_time.strftime("%-I:%M"))
     else:
-        dial.label = "Down: %s" % (next_sunchange_time.strftime("%-I:%M"))
+        dial.label = "Down:%s" % (next_sunchange_time.strftime("%-I:%M"))
 
     dial.value = max(min(moon_phase * 360, 355), 1)
     if moon_phase <= 0.05:
